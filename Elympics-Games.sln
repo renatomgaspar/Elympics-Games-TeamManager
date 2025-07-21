@@ -5,6 +5,8 @@ VisualStudioVersion = 17.14.36202.13 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elympics-Games.Mobile", "Elympics-Games.Mobile\Elympics-Games.Mobile.csproj", "{EDC001A1-A628-4C13-B6EC-9AB8C087C5C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Elympics-Games.API", "Elympics-Games.API\Elympics-Games.API.csproj", "{65510BF2-6CF2-4AFF-893C-B0508AEDD679}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,6 +19,10 @@ Global
 		{EDC001A1-A628-4C13-B6EC-9AB8C087C5C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDC001A1-A628-4C13-B6EC-9AB8C087C5C2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EDC001A1-A628-4C13-B6EC-9AB8C087C5C2}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{65510BF2-6CF2-4AFF-893C-B0508AEDD679}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{65510BF2-6CF2-4AFF-893C-B0508AEDD679}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{65510BF2-6CF2-4AFF-893C-B0508AEDD679}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{65510BF2-6CF2-4AFF-893C-B0508AEDD679}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
