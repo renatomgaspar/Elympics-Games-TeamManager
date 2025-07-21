@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Elympics_Games.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250721230717_InitDb")]
+    [Migration("20250721233905_InitDb")]
     partial class InitDb
     {
         /// <inheritdoc />
@@ -27,9 +27,11 @@ namespace Elympics_Games.API.Migrations
 
             modelBuilder.Entity("Elympics_Games.API.Data.Entities.User", b =>
                 {
-                    b.Property<Guid>("Id")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime?>("ConfirmedAt")
                         .HasColumnType("datetime2");
