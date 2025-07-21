@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Elympics_Games.API.Data.Entities
+namespace Elympics_Games.Mobile.Models
 {
     public class User
     {

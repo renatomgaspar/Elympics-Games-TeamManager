@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Elympics_Games.Mobile.Views.SignupView"
+             Title="SignupView">
+
+    <!-- Signup Form -->
+    <VerticalStackLayout Padding="30" Margin="0, 10, 0, 0">
+        <Image Source="userlogo.png" HeightRequest="180" />
+        <Label Text="Sign Up" Style="{StaticResource TitleH1}" />
+
+        <Label Text="Email" Style="{StaticResource FrmLabel}" />
+        <Entry Placeholder="Enter your email" Style="{StaticResource FrmEntry}" />
+
+        <Label Text="Name" Style="{StaticResource FrmLabel}" />
+        <Entry Placeholder="Enter your name" Style="{StaticResource FrmEntry}" />
+
+        <Label Text="Password" Style="{StaticResource FrmLabel}" />
+        <Entry Placeholder="Enter your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
+
+        <Label Text="Confirm Password" Style="{StaticResource FrmLabel}" />
+        <Entry Placeholder="Confirm your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Text="Sign Up" Clicked="SignUp_ClickedEvent" Style="{StaticResource FrmButton}" Margin="0, 0, 10, 0" />
+
+            <Button Grid.Column="1" Text="Login Page" Clicked="LoginPage_ClickedEvent" Style="{StaticResource FrmButton}" Margin="10, 0, 0, 0" />
+        </Grid>
+    </VerticalStackLayout>
+
+</ContentPage>
