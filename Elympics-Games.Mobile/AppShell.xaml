@@ -8,8 +8,13 @@
     Title="Elympics_Games.Mobile">
 
     <ShellContent
-        Title="SignUp"
+        Title="Signup"
         ContentTemplate="{DataTemplate local:SignupView}"
-        Route="SignUp" />
+        Route="SignupView" />
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginView}"
+        Route="LoginView" />
 
 </Shell>

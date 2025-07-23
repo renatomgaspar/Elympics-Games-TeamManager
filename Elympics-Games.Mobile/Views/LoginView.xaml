@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Elympics_Games.Mobile.Views.LoginView"
+             Title="LoginView">
+
+    <!-- Login Form -->
+    <VerticalStackLayout Padding="30" Margin="0, 30, 0, 0">
+        <Image Source="userlogo.png" HeightRequest="180" />
+        <Label Text="Login" Style="{StaticResource TitleH1}" />
+
+        <Label Text="Email" Style="{StaticResource FrmLabel}" />
+        <Entry Text="{Binding Email}" Placeholder="Enter your email" Style="{StaticResource FrmEntry}" />
+
+        <Label Text="Password" Style="{StaticResource FrmLabel}" />
+        <Entry Text="{Binding Password}" Placeholder="Enter your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="0" Text="Login" Command="{Binding AuthCommand}" Style="{StaticResource FrmButton}" Margin="0, 0, 10, 0" />
+
+            <Button Grid.Column="1" Text="Create Account" Command="{Binding NavigateToSignUpCommand}" Style="{StaticResource FrmButton}" Margin="10, 0, 0, 0" />
+        </Grid>
+
+        <Label Text="Recover Account" Style="{StaticResource LinkLabelStyle}">
+            <Label.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding RecoverAccountCommand}" />
+            </Label.GestureRecognizers>
+        </Label>
+    </VerticalStackLayout>
+
+</ContentPage>

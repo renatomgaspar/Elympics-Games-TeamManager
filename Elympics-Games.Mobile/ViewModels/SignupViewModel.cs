@@ -60,7 +60,7 @@ namespace Elympics_Games.Mobile.ViewModels
         [RelayCommand]
         private async Task NavigateToLoginAsync()
         {
-            // await Shell.Current.GoToAsync("//LoginView");
+            await Shell.Current.GoToAsync("//LoginView");
         }
 
         public static bool IsValidEmail(string email)
