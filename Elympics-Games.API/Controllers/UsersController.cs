@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Elympics_Games.API.Data;
 using Elympics_Games.API.Data.Entities;
 using Elympics_Games.API.Repositories;
+using Elympics_Games.API.DTOs.User;
 
 namespace Elympics_Games.API.Controllers
 {
@@ -17,10 +13,12 @@ namespace Elympics_Games.API.Controllers
     {
         private readonly IUserRepository _userRepository;
 
+
         public UsersController(IUserRepository userRepository)
         {
             _userRepository = userRepository;
         }
+
 
         // GET: api/Users
         [HttpGet]
@@ -28,6 +26,7 @@ namespace Elympics_Games.API.Controllers
         {
             return Ok(_userRepository.GetAll().OrderBy(u => u.Id));
         }
+
 
         // GET: api/Users/5
         [HttpGet("{id}")]
@@ -42,6 +41,35 @@ namespace Elympics_Games.API.Controllers
 
             return user;
         }
+
+
+        // POST: api/Users
+        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+        [HttpPost]
+        public async Task<ActionResult<User>> PostUser(CreateUserDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = new User
+            {
+                Name = dto.Name,
+                Email = dto.Email,
+                Password = dto.Password,
+            };
+
+            if (await _userRepository.ExistsByEmailAsync(user.Email))
+            {
+                return BadRequest("There is already an account created with that Email!");
+            }
+
+            await _userRepository.CreateAsync(user);
+
+            return CreatedAtAction("GetUser", new { id = user.Id }, user);
+        }
+
 
         // PUT: api/Users/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -72,15 +100,6 @@ namespace Elympics_Games.API.Controllers
             return NoContent();
         }
 
-        // POST: api/Users
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<User>> PostUser(User user)
-        {
-            await _userRepository.CreateAsync(user);
-
-            return CreatedAtAction("GetUser", new { id = user.Id }, user);
-        }
 
         // DELETE: api/Users/5
         [HttpDelete("{id}")]
