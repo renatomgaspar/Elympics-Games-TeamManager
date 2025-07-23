@@ -10,13 +10,13 @@
         <Label Text="Sign Up" Style="{StaticResource TitleH1}" />
 
         <Label Text="Email" Style="{StaticResource FrmLabel}" />
-        <Entry Placeholder="Enter your email" Style="{StaticResource FrmEntry}" />
+        <Entry Text="{Binding Email}" Placeholder="Enter your email" Style="{StaticResource FrmEntry}" />
 
         <Label Text="Name" Style="{StaticResource FrmLabel}" />
-        <Entry Placeholder="Enter your name" Style="{StaticResource FrmEntry}" />
+        <Entry Text="{Binding Name}" Placeholder="Enter your name" Style="{StaticResource FrmEntry}" />
 
         <Label Text="Password" Style="{StaticResource FrmLabel}" />
-        <Entry Placeholder="Enter your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
+        <Entry Text="{Binding Password}" Placeholder="Enter your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
 
         <Label Text="Confirm Password" Style="{StaticResource FrmLabel}" />
         <Entry Placeholder="Confirm your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
@@ -27,9 +27,9 @@
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Text="Sign Up" Clicked="SignUp_ClickedEvent" Style="{StaticResource FrmButton}" Margin="0, 0, 10, 0" />
+            <Button Grid.Column="0" Text="Sign Up" Command="{Binding SignUpCommand}" Style="{StaticResource FrmButton}" Margin="0, 0, 10, 0" />
 
-            <Button Grid.Column="1" Text="Login Page" Clicked="LoginPage_ClickedEvent" Style="{StaticResource FrmButton}" Margin="10, 0, 0, 0" />
+            <Button Grid.Column="1" Text="Login Page" Command="{Binding NavigateToLoginCommand}" Style="{StaticResource FrmButton}" Margin="10, 0, 0, 0" />
         </Grid>
     </VerticalStackLayout>
 
