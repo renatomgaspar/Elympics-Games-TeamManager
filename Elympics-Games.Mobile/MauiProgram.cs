@@ -1,9 +1,13 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Elympics_Games.Mobile.Services;
+using Elympics_Games.Mobile.ViewModels;
+using Microsoft.Extensions.Logging;
 
 namespace Elympics_Games.Mobile
 {
     public static class MauiProgram
     {
+        public static IServiceProvider ServiceProvider { get; private set; }
+
         public static MauiApp CreateMauiApp()
         {
             var builder = MauiApp.CreateBuilder();
@@ -15,11 +19,19 @@ namespace Elympics_Games.Mobile
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<PasswordService>();
+
+            builder.Services.AddTransient<SignupViewModel>();
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
-            return builder.Build();
+            var app = builder.Build();
+
+            ServiceProvider = app.Services;
+
+            return app;
         }
     }
 }

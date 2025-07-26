@@ -7,7 +7,7 @@ public partial class SignupView : ContentPage
     public SignupView()
     {
         InitializeComponent();
-        BindingContext = new SignupViewModel();
+        BindingContext = MauiProgram.ServiceProvider.GetService<SignupViewModel>();
         Shell.SetNavBarIsVisible(this, false);
     }
 }

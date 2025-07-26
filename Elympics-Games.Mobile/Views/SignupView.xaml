@@ -4,34 +4,40 @@
              x:Class="Elympics_Games.Mobile.Views.SignupView"
              Title="SignupView">
 
-    <!-- Signup Form -->
-    <VerticalStackLayout Padding="30">
-        <Image Source="userlogo.png" HeightRequest="180" />
-        <Label Text="Sign Up" Style="{StaticResource TitleH1}" />
+    <Grid>
+        <!-- Signup Form -->
+        <VerticalStackLayout Padding="30">
+            <Image Source="userlogo.png" HeightRequest="180" />
+            <Label Text="Sign Up" Style="{StaticResource TitleH1}" />
 
-        <Label Text="Email" Style="{StaticResource FrmLabel}" />
-        <Entry Text="{Binding Email}" Placeholder="Enter your email" Style="{StaticResource FrmEntry}" />
+            <Label Text="Email" Style="{StaticResource FrmLabel}" />
+            <Entry Text="{Binding Email}" Placeholder="Enter your email" Style="{StaticResource FrmEntry}" />
 
-        <Label Text="Name" Style="{StaticResource FrmLabel}" />
-        <Entry Text="{Binding Name}" Placeholder="Enter your name" Style="{StaticResource FrmEntry}" />
+            <Label Text="Name" Style="{StaticResource FrmLabel}" />
+            <Entry Text="{Binding Name}" Placeholder="Enter your name" Style="{StaticResource FrmEntry}" />
 
-        <Label Text="Password" Style="{StaticResource FrmLabel}" />
-        <Entry Text="{Binding Password}" Placeholder="Enter your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
+            <Label Text="Password" Style="{StaticResource FrmLabel}" />
+            <Entry Text="{Binding Password}" Placeholder="Enter your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
 
-        <Label Text="Confirm Password" Style="{StaticResource FrmLabel}" />
-        <Entry Text ="{Binding ConfirmPassword}" Placeholder="Confirm your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
+            <Label Text="Confirm Password" Style="{StaticResource FrmLabel}" />
+            <Entry Text="{Binding ConfirmPassword}" Placeholder="Confirm your password" IsPassword="True" Style="{StaticResource FrmEntry}" />
 
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
 
-            <Button Grid.Column="0" Text="Sign Up" Command="{Binding CreateUserCommand}" Style="{StaticResource FrmButton}" Margin="0, 0, 10, 0" />
+                <Button Grid.Column="0" Text="Sign Up" Command="{Binding CreateUserCommand}" Style="{StaticResource FrmButton}" Margin="0, 0, 10, 0" />
+                <Button Grid.Column="1" Text="Login Page" Command="{Binding NavigateToLoginCommand}" Style="{StaticResource FrmButton}" Margin="10, 0, 0, 0" />
+            </Grid>
+        </VerticalStackLayout>
 
-            <Button Grid.Column="1" Text="Login Page" Command="{Binding NavigateToLoginCommand}" Style="{StaticResource FrmButton}" Margin="10, 0, 0, 0" />
+        <!-- 🌀 Loading Overlay -->
+        <Grid IsVisible="{Binding IsBusy}" BackgroundColor="#80000000" InputTransparent="False">
+            <ActivityIndicator IsRunning="True" Color="White" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="Creating Account" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,80,0,0" />
         </Grid>
-
-    </VerticalStackLayout>
+    </Grid>
 
 </ContentPage>
