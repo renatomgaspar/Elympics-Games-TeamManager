@@ -11,9 +11,9 @@ namespace Elympics_Games.Mobile.ViewModels
     public partial class SignupViewModel : ObservableObject
     {
         private readonly UserService _userService;
-        private readonly PasswordService _passwordService;
+        private readonly PasswordService<CreateUserDto> _passwordService;
 
-        public SignupViewModel(UserService userService, PasswordService passwordService)
+        public SignupViewModel(UserService userService, PasswordService<CreateUserDto> passwordService)
         {
             _userService = userService;
             _passwordService = passwordService;
@@ -28,7 +28,10 @@ namespace Elympics_Games.Mobile.ViewModels
         [RelayCommand]
         public async Task CreateUserAsync()
         {
-            IsBusy = true;
+            if (IsBusy)
+            {
+                return;
+            }
 
             if (string.IsNullOrWhiteSpace(Name) || string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
@@ -47,6 +50,8 @@ namespace Elympics_Games.Mobile.ViewModels
                 await Shell.Current.DisplayAlert("❌ Error", "Password must be the same!", "OK");
                 return;
             }
+
+            IsBusy = true;
 
             try
             {

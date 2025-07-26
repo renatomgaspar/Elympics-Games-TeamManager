@@ -33,7 +33,7 @@
             </Grid>
         </VerticalStackLayout>
 
-        <!-- 🌀 Loading Overlay -->
+        <!-- Loading Overlay -->
         <Grid IsVisible="{Binding IsBusy}" BackgroundColor="#80000000" InputTransparent="False">
             <ActivityIndicator IsRunning="True" Color="White" HorizontalOptions="Center" VerticalOptions="Center" />
             <Label Text="Creating Account" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,80,0,0" />

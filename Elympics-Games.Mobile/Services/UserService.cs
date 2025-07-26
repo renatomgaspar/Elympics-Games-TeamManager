@@ -1,13 +1,9 @@
 ﻿using Elympics_Games.Mobile.DTOs.User;
 using Elympics_Games.Mobile.Helpers;
-using Elympics_Games.Mobile.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
+using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace Elympics_Games.Mobile.Services
 {
@@ -51,6 +47,45 @@ namespace Elympics_Games.Mobile.Services
                     Success = response.IsSuccessStatusCode,
                     Message = response.IsSuccessStatusCode
                         ? "User created successfully!"
+                        : responseText,
+                    StatusCode = response.StatusCode
+                };
+            }
+            catch (HttpRequestException ex)
+            {
+                return new ResultModel
+                {
+                    Success = false,
+                    Message = $"Network error: {ex.Message}",
+                    StatusCode = HttpStatusCode.ServiceUnavailable
+                };
+            }
+            catch (Exception ex)
+            {
+                return new ResultModel
+                {
+                    Success = false,
+                    Message = $"Unexpected error: {ex.Message}",
+                    StatusCode = HttpStatusCode.InternalServerError
+                };
+            }
+        }
+
+        public async Task<ResultModel> AuthUserAsync(AuthUserDto dto)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(dto);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync($"{_baseUrl}/auth", content);
+                var responseText = await response.Content.ReadAsStringAsync();
+
+                return new ResultModel
+                {
+                    Success = response.IsSuccessStatusCode,
+                    Message = response.IsSuccessStatusCode
+                        ? "User authenticated successfully!"
                         : responseText,
                     StatusCode = response.StatusCode
                 };

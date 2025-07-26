@@ -25,12 +25,6 @@
 
             <Button Grid.Column="1" Text="Create Account" Command="{Binding NavigateToSignUpCommand}" Style="{StaticResource FrmButton}" Margin="10, 0, 0, 0" />
         </Grid>
-
-        <Label Text="Recover Account" Style="{StaticResource LinkLabelStyle}">
-            <Label.GestureRecognizers>
-                <TapGestureRecognizer Command="{Binding RecoverAccountCommand}" />
-            </Label.GestureRecognizers>
-        </Label>
     </VerticalStackLayout>
 
 </ContentPage>

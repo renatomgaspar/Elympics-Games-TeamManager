@@ -17,7 +17,13 @@ namespace Elympics_Games.API.Repositories
 
         public async Task<bool> ExistsByEmailAsync(string email)
         {
-            return await _context.Set<User>().AnyAsync(u => u.Email == email); ;
+            return await GetByEmailAsync(email) != null;
+        }
+
+        public async Task<User?> GetByEmailAsync(string email)
+        {
+            return await _context.Set<User>()
+                .FirstOrDefaultAsync(u => u.Email == email);
         }
     }
 }

@@ -1,4 +1,6 @@
-﻿using Elympics_Games.Mobile.Services;
+﻿using Elympics_Games.Mobile.DTOs.User;
+using Elympics_Games.Mobile.Models;
+using Elympics_Games.Mobile.Services;
 using Elympics_Games.Mobile.ViewModels;
 using Microsoft.Extensions.Logging;
 
@@ -20,9 +22,11 @@ namespace Elympics_Games.Mobile
                 });
 
             builder.Services.AddSingleton<UserService>();
-            builder.Services.AddSingleton<PasswordService>();
+            builder.Services.AddSingleton<PasswordService<AuthUserDto>>();
+            builder.Services.AddSingleton<PasswordService<CreateUserDto>>();
 
             builder.Services.AddTransient<SignupViewModel>();
+            builder.Services.AddTransient<LoginViewModel>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

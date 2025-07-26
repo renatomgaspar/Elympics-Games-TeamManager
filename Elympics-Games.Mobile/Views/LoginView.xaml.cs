@@ -7,7 +7,7 @@ public partial class LoginView : ContentPage
 	public LoginView()
 	{
 		InitializeComponent();
-        BindingContext = new LoginViewModel();
+        BindingContext = MauiProgram.ServiceProvider.GetService<LoginViewModel>();
         Shell.SetNavBarIsVisible(this, false);
     }
 }

@@ -4,6 +4,7 @@ using Elympics_Games.API.Data;
 using Elympics_Games.API.Data.Entities;
 using Elympics_Games.API.Repositories;
 using Elympics_Games.API.DTOs.User;
+using Elympics_Games.Mobile.Services;
 
 namespace Elympics_Games.API.Controllers
 {
@@ -12,11 +13,15 @@ namespace Elympics_Games.API.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserRepository _userRepository;
+        private readonly PasswordService<AuthUserDto> _passwordService;
 
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(
+            IUserRepository userRepository, 
+            PasswordService<AuthUserDto> passwordService)
         {
             _userRepository = userRepository;
+            _passwordService = passwordService;
         }
 
 
@@ -42,6 +47,36 @@ namespace Elympics_Games.API.Controllers
             return user;
         }
 
+        [HttpPost("auth")]
+        public async Task<ActionResult<User>> AuthUser([FromBody] AuthUserDto dto)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var user = await _userRepository.GetByEmailAsync(dto.Email);
+
+            if (user == null)
+            {
+                return NotFound("User not found!");
+            }
+
+            var authUserDto = new AuthUserDto
+            {
+                Email = user.Email,
+                Password = user.Password
+            };
+
+            var isValid = _passwordService.VerifyPassword(authUserDto, user.Password, dto.Password);
+
+            if (!isValid)
+            {
+                return BadRequest("Incorrect password!");
+            }
+
+            return Ok();
+        }
 
         // POST: api/Users
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754

@@ -1,5 +1,7 @@
 using Elympics_Games.API.Data;
+using Elympics_Games.API.DTOs.User;
 using Elympics_Games.API.Repositories;
+using Elympics_Games.Mobile.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +19,7 @@ builder.Services.AddDbContextPool<AppDbContext>(cfg =>
 });
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<PasswordService<AuthUserDto>>();
 
 var app = builder.Build();
 
