@@ -53,7 +53,7 @@ namespace Elympics_Games.Mobile.ViewModels
                 {
                     await Shell.Current.DisplayAlert("✅ Success", result.Message, "OK");
 
-                    // await Shell.Current.GoToAsync("//HomePage");
+                    await Shell.Current.GoToAsync("//HomeView");
                 }
                 else
                 {

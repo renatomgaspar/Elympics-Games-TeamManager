@@ -27,6 +27,7 @@ namespace Elympics_Games.Mobile
 
             builder.Services.AddTransient<SignupViewModel>();
             builder.Services.AddTransient<LoginViewModel>();
+            builder.Services.AddTransient<HomeViewModel>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
