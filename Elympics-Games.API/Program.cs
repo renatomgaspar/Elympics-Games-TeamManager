@@ -19,6 +19,7 @@ builder.Services.AddDbContextPool<AppDbContext>(cfg =>
 });
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<PasswordService<AuthUserDto>>();
 
 var app = builder.Build();
