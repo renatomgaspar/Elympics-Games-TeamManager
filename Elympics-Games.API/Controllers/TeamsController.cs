@@ -23,6 +23,7 @@ namespace Elympics_Games.API.Controllers
         }
 
         // GET: api/Teams
+        [HttpGet()]
         public IActionResult GetTeams()
         {
             return Ok(_teamRepository.GetAll().OrderBy(t => t.Id));
@@ -42,6 +43,7 @@ namespace Elympics_Games.API.Controllers
             return team;
         }
 
+        [HttpPost]
         public async Task<ActionResult<Team>> PostTeam(Team team)
         {
             if (!ModelState.IsValid)

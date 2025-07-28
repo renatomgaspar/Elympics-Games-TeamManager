@@ -76,11 +76,5 @@ namespace Elympics_Games.Mobile.ViewModels
         {
             await Shell.Current.GoToAsync("//SignupView");
         }
-
-        [RelayCommand]
-        private async Task RecoverAccountAsync()
-        {
-            // await Shell.Current.GoToAsync("//RecoverAccountView");
-        }
     }
 }

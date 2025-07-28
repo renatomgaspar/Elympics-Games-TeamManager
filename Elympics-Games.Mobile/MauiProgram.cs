@@ -22,12 +22,14 @@ namespace Elympics_Games.Mobile
                 });
 
             builder.Services.AddSingleton<UserService>();
+            builder.Services.AddSingleton<TeamService>();
             builder.Services.AddSingleton<PasswordService<AuthUserDto>>();
             builder.Services.AddSingleton<PasswordService<CreateUserDto>>();
 
             builder.Services.AddTransient<SignupViewModel>();
             builder.Services.AddTransient<LoginViewModel>();
             builder.Services.AddTransient<HomeViewModel>();
+            builder.Services.AddTransient<ShowTeamsViewModel>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

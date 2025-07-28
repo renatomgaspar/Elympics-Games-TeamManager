@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Elympics_Games.Mobile.Helpers;
 using System;
 using System.Collections.Generic;
@@ -35,12 +36,14 @@ namespace Elympics_Games.Mobile.ViewModels
             };
         }
 
-        private async Task ShowTeamsAsync()
+        [RelayCommand]
+        private async Task NavigateToShowTeamsAsync()
         {
             await Shell.Current.GoToAsync("//ShowTeamsView");
         }
 
-        private async Task ManageTeamsAsync()
+        [RelayCommand]
+        private async Task NavigateToManageTeamsAsync()
         {
             await Shell.Current.GoToAsync("//ManageTeamsView");
         }
