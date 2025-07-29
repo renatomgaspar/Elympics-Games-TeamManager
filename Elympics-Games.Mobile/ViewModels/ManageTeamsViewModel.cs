@@ -66,6 +66,12 @@ namespace Elympics_Games.Mobile.ViewModels
                 ElementsNumber = int.TryParse(ElementsNumber, out var num) ? num : 0
             };
 
+            if (IsDuplicateCountry(team) && editingTeam == null)
+            {
+                await App.Current.MainPage.DisplayAlert("❌ Error", "There is already a Team With that Country!", "OK");
+                return;
+            }
+
             bool success = false;
 
             if (editingTeam == null)
@@ -107,7 +113,14 @@ namespace Elympics_Games.Mobile.ViewModels
             }
         }
 
-        [RelayCommand]
+        private bool IsDuplicateCountry(Team newTeam)
+        {
+            return Teams.Any(t =>
+                t.Country.Equals(newTeam.Country, StringComparison.OrdinalIgnoreCase) &&
+                t.Id != newTeam.Id);
+        }
+
+            [RelayCommand]
         private Task ClearFormAsync()
         {
             TeamName = TeamCountry = ElementsNumber = string.Empty;
