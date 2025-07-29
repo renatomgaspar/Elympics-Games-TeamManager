@@ -44,7 +44,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Button Grid.Column="0" Text="Show Teams" Command="{Binding NavigateToShowTeamsCommand}" Style="{StaticResource FrmButton}" Margin="0, 20, 10, 0" />
-
+            
                 <Button Grid.Column="1" Text="Manage Teams" Command="{Binding NavigateToManageTeamsCommand}" Style="{StaticResource FrmButton}" Margin="10, 20, 0, 0" />
             </Grid>
 

@@ -1,4 +1,5 @@
 using Elympics_Games.API.Data;
+using Elympics_Games.API.Data.Entities;
 using Elympics_Games.API.DTOs.User;
 using Elympics_Games.API.Repositories;
 using Elympics_Games.Mobile.Services;
@@ -18,9 +19,12 @@ builder.Services.AddDbContextPool<AppDbContext>(cfg =>
     cfg.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
 
+builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITeamRepository, TeamRepository>();
 builder.Services.AddScoped<PasswordService<AuthUserDto>>();
+builder.Services.AddScoped<PasswordService<User>>();
+
 
 var app = builder.Build();
 
@@ -34,6 +38,12 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+using (var scope = app.Services.CreateScope())
+{
+    var seeder = scope.ServiceProvider.GetRequiredService<SeedDb>();
+    await seeder.SeedAsync();
+}
 
 app.MapControllers();
 

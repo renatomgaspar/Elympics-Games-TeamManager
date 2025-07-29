@@ -11,5 +11,10 @@ namespace Elympics_Games.Mobile.Services
             var result = _hasher.VerifyHashedPassword(user, hashedPassword, inputPassword);
             return result == PasswordVerificationResult.Success;
         }
+
+        public string HashPassword(TUser user, string plainPassword)
+        {
+            return _hasher.HashPassword(user, plainPassword);
+        }
     }
 }
