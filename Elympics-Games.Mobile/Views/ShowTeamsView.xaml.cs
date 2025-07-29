@@ -10,4 +10,14 @@ public partial class ShowTeamsView : ContentPage
         BindingContext = MauiProgram.ServiceProvider.GetService<ShowTeamsViewModel>();
         Shell.SetNavBarIsVisible(this, false);
     }
+
+    protected override async void OnNavigatedTo(NavigatedToEventArgs args)
+    {
+        base.OnNavigatedTo(args);
+
+        if (BindingContext is ShowTeamsViewModel vm)
+        {
+            vm.LoadTeamsAsync();
+        }
+    }
 }

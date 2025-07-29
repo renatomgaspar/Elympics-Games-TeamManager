@@ -24,7 +24,7 @@ namespace Elympics_Games.Mobile.ViewModels
             LoadTeamsAsync();
         }
 
-        private async void LoadTeamsAsync()
+        public async void LoadTeamsAsync()
         {
             IsBusy = true;
 
