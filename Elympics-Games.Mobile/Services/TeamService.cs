@@ -1,6 +1,7 @@
 ﻿using Elympics_Games.Mobile.Helpers;
 using Elympics_Games.Mobile.Models;
 using System.Net;
+using System.Text;
 using System.Text.Json;
 
 namespace Elympics_Games.Mobile.Services
@@ -58,6 +59,79 @@ namespace Elympics_Games.Mobile.Services
             {
                 Console.WriteLine($"❌ Unexpected error: {ex.Message}");
                 return new List<Team>();
+            }
+        }
+
+        public async Task<bool> AddTeamAsync(Team team)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(team);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync($"{_baseUrl}", content);
+                response.EnsureSuccessStatusCode();
+
+                return true;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"❌ Network error (AddTeam): {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Unexpected error (AddTeam): {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> UpdateTeamAsync(Team team)
+        {
+            try
+            {
+                var json = JsonSerializer.Serialize(team);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var requestUrl = $"{_baseUrl}/{team.Id}";
+
+                var response = await _httpClient.PutAsync(requestUrl, content);
+                response.EnsureSuccessStatusCode();
+
+                return true;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"❌ Network error (UpdateTeam): {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Unexpected error (UpdateTeam): {ex.Message}");
+                return false;
+            }
+        }
+
+        public async Task<bool> DeleteTeamAsync(int teamId)
+        {
+            try
+            {
+                var requestUrl = $"{_baseUrl}/{teamId}";
+
+                var response = await _httpClient.DeleteAsync(requestUrl);
+                response.EnsureSuccessStatusCode();
+
+                return true;
+            }
+            catch (HttpRequestException ex)
+            {
+                Console.WriteLine($"❌ Network error (DeleteTeam): {ex.Message}");
+                return false;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"❌ Unexpected error (DeleteTeam): {ex.Message}");
+                return false;
             }
         }
     }

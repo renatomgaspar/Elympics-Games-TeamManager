@@ -7,7 +7,7 @@
     <Grid>
         <!-- Signup Form -->
         <VerticalStackLayout Padding="30">
-            <Image Source="userlogo.png" HeightRequest="180" />
+            <Image Source="signup.png" HeightRequest="180" />
             <Label Text="Sign Up" Style="{StaticResource TitleH1}" />
 
             <Label Text="Email" Style="{StaticResource FrmLabel}" />

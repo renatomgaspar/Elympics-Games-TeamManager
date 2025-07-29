@@ -47,5 +47,11 @@ namespace Elympics_Games.Mobile.ViewModels
         {
             await Shell.Current.GoToAsync("//ManageTeamsView");
         }
+
+        [RelayCommand]
+        private async Task LogoutAsync()
+        {
+            await Shell.Current.GoToAsync("//LoginView");
+        }
     }
 }

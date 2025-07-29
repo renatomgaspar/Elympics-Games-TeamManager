@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Elympics_Games.Mobile.ViewModels"
+             x:Class="Elympics_Games.Mobile.Views.ManageTeamsView"
+             Title="ManageTeamsView">
+
+    <Grid RowDefinitions="Auto,*,Auto"
+          Padding="15"
+          RowSpacing="10">
+
+        <StackLayout Grid.Row="0" Orientation="Vertical" Spacing="10" Margin="20, 0, 20, 10">
+            <Label Text="Manage Teams" Style="{StaticResource TitleH1}" />
+            <Entry Placeholder="Team Name" Text="{Binding TeamName}" Style="{StaticResource FrmEntry}" />
+            <Entry Placeholder="Country" Text="{Binding TeamCountry}" Style="{StaticResource FrmEntry}" />
+            <Entry Placeholder="Elements Number"
+               Keyboard="Numeric"
+               Text="{Binding ElementsNumber}"
+               Style="{StaticResource FrmEntry}" />
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+
+                <Button Text="Add/Update"
+                        Grid.Column="0"
+                        Command="{Binding SaveTeamCommand}"
+                        Style="{StaticResource FrmButton}" 
+                        Margin="0, 0, 10, 0" />       
+                <Button Text="Clear"
+                        Grid.Column="1"
+                        Command="{Binding ClearFormCommand}"
+                        Style="{StaticResource FrmButton}"
+                        Margin="10, 0, 0, 0"/>
+            </Grid>
+            
+        </StackLayout>
+
+        <ScrollView Grid.Row="1">
+            <StackLayout Spacing="15">
+                <ActivityIndicator IsRunning="{Binding IsBusy}"
+                   IsVisible="{Binding IsBusy}"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Center" />
+                
+                <CollectionView ItemsSource="{Binding Teams}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame Margin="5"
+                                   Padding="10"
+                                   HasShadow="True"
+                                   Style="{StaticResource TeamFrameStyle}">
+                                <Grid ColumnDefinitions="*,Auto">
+
+                                    <StackLayout Grid.Column="0" Spacing="3">
+                                        <Label Text="{Binding Name}" Style="{StaticResource TeamNameStyle}" />
+                                        <Label Text="{Binding Country}" Style="{StaticResource TeamCountryStyle}" />
+                                        <Label Text="{Binding ElementsNumber, StringFormat='Elements: {0}'}" Style="{StaticResource TeamElementStyle}" />
+                                    </StackLayout>
+
+                                    <StackLayout Grid.Column="1"
+                                                 Orientation="Horizontal"
+                                                 Spacing="8"
+                                                 VerticalOptions="Center">
+                                        <Button Text="✏️"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageTeamsViewModel}}, Path=EditTeamCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Style="{StaticResource FrmButton}"
+                                                BackgroundColor="White" />
+                                        <Button Text="🗑️"
+                                                Command="{Binding Source={RelativeSource AncestorType={x:Type vm:ManageTeamsViewModel}}, Path=DeleteTeamCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Style="{StaticResource FrmButton}"
+                                                BackgroundColor="White" />
+                                    </StackLayout>
+
+                                </Grid>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </StackLayout>
+        </ScrollView>
+
+        <Button Grid.Row="2"
+                Text="Go back"
+                Command="{Binding NavigateToHomeCommand}"
+                Margin="0,30,0,10"
+                Style="{StaticResource FrmButton}" />
+    </Grid>
+
+</ContentPage>

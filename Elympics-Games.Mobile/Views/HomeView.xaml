@@ -47,6 +47,9 @@
 
                 <Button Grid.Column="1" Text="Manage Teams" Command="{Binding NavigateToManageTeamsCommand}" Style="{StaticResource FrmButton}" Margin="10, 20, 0, 0" />
             </Grid>
+
+            <Button Text="Logout" Command="{Binding LogoutCommand}" Style="{StaticResource FrmButton}" BackgroundColor="DarkRed" Margin="0, 20, 0, 0" />
+
         </StackLayout>
     </ScrollView>
 

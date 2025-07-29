@@ -27,4 +27,9 @@
         ContentTemplate="{DataTemplate local:ShowTeamsView}"
         Route="ShowTeamsView" />
 
+    <ShellContent
+    Title="ManageTeams"
+    ContentTemplate="{DataTemplate local:ManageTeamsView}"
+    Route="ManageTeamsView" />
+
 </Shell>
